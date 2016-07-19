@@ -32,7 +32,7 @@ public final class Match<T> {
 	}
 
 	public <R> Match<T> with(final Predicate<T> pattern, final Function<T, R> then) {
-		final Function<T, Any> thenAny = t -> Any.of(then.apply(t)).orElse(Any.UNDEFINED);
+		final Function<T, Any> thenAny = t -> Any.of(then.apply(t)).orElse(Any.EMPTY);
 		final Tuple2<Predicate<T>, Function<T, Any>> tuple = Tuple.of(pattern, thenAny);
 
 		return new Match<>(this.value, ImmutableSet.<Tuple2<Predicate<T>, Function<T, Any>>>builder()
@@ -41,16 +41,16 @@ public final class Match<T> {
 			.build(), otherwise);
 	}
 
-	public <R> Optional<Any> otherwise(final R value) {
-		final Match<T> match = this.with(t -> true, t -> value);
+	public <R> Optional<Any> otherwise(final R wanted) {
+		final Match<T> match = this.with(t -> true, t -> wanted);
 
 		return match.patterns.stream()
-			.filter(pattern -> pattern.first().test(this.value))
-			.map(pattern -> pattern.second().apply(this.value))
+			.filter(pattern -> pattern.first().test(match.value))
+			.map(pattern -> pattern.second().apply(match.value))
 			.findFirst();
 	}
 
-	public Optional<Any> any() {
-		return this.otherwise(null);
+	public Optional<Any> empty() {
+		return this.otherwise(Any.OBJECT);
 	}
 }

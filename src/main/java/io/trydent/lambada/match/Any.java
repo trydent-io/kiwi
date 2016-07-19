@@ -3,7 +3,8 @@ package io.trydent.lambada.match;
 import java.util.Optional;
 
 public final class Any {
-	public final static Any UNDEFINED = new Any(Void.TYPE);
+	final static Object OBJECT = new Object();
+	final static Any EMPTY = new Any(OBJECT);
 
 	private final Object value;
 

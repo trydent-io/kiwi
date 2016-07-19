@@ -16,7 +16,7 @@ public class AnyTest {
 		Assert.assertNotNull(any);
 		Assert.assertTrue(any.isPresent());
 
-		final Any value = any.orElse(Any.UNDEFINED);
+		final Any value = any.orElse(Any.EMPTY);
 
 		Assert.assertTrue(any
 			.flatMap(Any::asString)

@@ -1,7 +1,11 @@
 package io.trydent.lambada.match;
 
+import org.apache.commons.lang3.StringUtils;
 import org.junit.Assert;
 import org.junit.Test;
+
+import java.util.Optional;
+import java.util.UUID;
 
 /**
  * Created by guada on 15/07/16.
@@ -46,4 +50,37 @@ public class MatchTest {
 		Assert.assertNotNull(match);
 	}
 
+	@Test
+	public void otherwiseWithValue() throws Exception {
+		final String value = "test";
+
+		final Optional<Any> any = Match.of(value)
+			.with("fake", String::toUpperCase)
+			.with(12, $ -> UUID.randomUUID())
+			.with(Void.TYPE, $ -> 123.543f)
+			.otherwise("TEST");
+
+		final String result = any
+			.flatMap(Any::asString)
+			.orElse(StringUtils.EMPTY);
+
+		Assert.assertEquals(value.toUpperCase(), result);
+	}
+
+	@Test
+	public void emptyWithValue() throws Exception {
+		final String value = "test";
+
+		final Optional<Any> any = Match.of(value)
+			.with("fake", String::toUpperCase)
+			.with(12, $ -> UUID.randomUUID())
+			.with(Void.TYPE, $ -> 123.543f)
+			.empty();
+
+		final Object result = any
+			.flatMap($ -> $.as(Object.class))
+			.orElse(null);
+
+		Assert.assertEquals(Any.OBJECT, result);
+	}
 }
