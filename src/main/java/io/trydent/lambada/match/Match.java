@@ -1,4 +1,4 @@
-package io.trydent.lambada;
+package io.trydent.lambada.match;
 
 import com.google.common.collect.ImmutableSet;
 import io.trydent.lambada.tuple.Tuple;

@@ -1,9 +1,9 @@
-package io.trydent.lambada;
+package io.trydent.lambada.match;
 
 import java.util.Optional;
 
 public final class Any {
-	public final static Any UNDEFINED = new Any(null);
+	public final static Any UNDEFINED = new Any(Void.TYPE);
 
 	private final Object value;
 
