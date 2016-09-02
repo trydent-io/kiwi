@@ -1,6 +1,6 @@
 package io.trydent.kiwi.tuple;
 
-import org.apache.commons.lang3.StringUtils;
+import io.trydent.kiwi.misc.Strings;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -16,11 +16,11 @@ public class Tuple1Test {
 	public void filter() throws Exception {
 		final String res = tuple(Optional.of("val1"))
 			.filter(Optional::isPresent)
-			.flatMap2(s1 -> tuple(s1.get(), ""))
+			.flatMap2(s1 -> tuple(s1.get(), Strings.EMPTY))
 			.map((s1, s2) -> "hadoken")
-			.orElse(StringUtils.EMPTY);
+			.orElse(Strings.EMPTY);
 
-		Assert.assertEquals(StringUtils.EMPTY, res);
+		Assert.assertEquals(Strings.EMPTY, res);
 	}
 
 }

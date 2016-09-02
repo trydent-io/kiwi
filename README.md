@@ -5,6 +5,7 @@ Kiwi
 [![][travis img]][travis]
 [![][license img]][license]
 
+(Kiwi Is a Warped Instrument)
 The easiest way to transform a fruit to an animal in Java!
 
 ## LICENSE
@@ -27,7 +28,7 @@ limitations under the License.
 [travis img]:https://travis-ci.org/trydent-io/kiwi.svg?branch=master
 
 [kiwi]:kiwi
-[kiwi img]:https://github.com/trydent-io/kiwi/blob/master/kiwi.png
+[kiwi img]:https://github.com/trydent-io/kiwi/blob/master/asset/kiwi.png
 
 [maven]:http://search.maven.org/#search|gav|1|g:"com.netflix.hystrix"%20AND%20a:"hystrix-core"
 [maven img]:https://maven-badges.herokuapp.com/maven-central/com.netflix.hystrix/hystrix-core/badge.svg
